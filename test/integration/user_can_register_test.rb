@@ -4,17 +4,15 @@ class UserCanRegisterTest < ActionDispatch::IntegrationTest
   include Capybara::DSL
 
   test "user sees user welcome page" do
-  a visit "/login"
+   visit "/register"
 
-    click_on "Register"
+   fill_in "Username", with: "Nathan"
+   fill_in "Password", with: "password"
+   click_on "Create account"
 
-    fill_in "username", with: "Nathan"
-    fill_in "password", with: "password"
-    click_on "Create account"
+   user = User.last
 
-    user = User.last
-
-    assert_equal "/user/#{user.id}", current_path
-    assert page.has_content?("Welcome #{user.usernmae}")
+   assert_equal users_path(user), current_path
+   assert page.has_content?("Welcome #{user.username}")
   end
 end

@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     if user.save
       flash[:notice] = "You have successfully created a new account"
       session[:user_id] = user.id
-      redirect_to users_path(user)
+      redirect_to user_path(user)
     else
       flash.now[:error] = "Invalid Login"
       render :new

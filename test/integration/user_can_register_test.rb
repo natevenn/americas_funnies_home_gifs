@@ -12,7 +12,7 @@ class UserCanRegisterTest < ActionDispatch::IntegrationTest
 
    user = User.last
 
-   assert_equal users_path(user), current_path
+   assert_equal user_path(user), current_path
    assert page.has_content?("Welcome #{user.username}")
   end
 end

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :users, only: [:new, :create, :show]
+  resources :users, only: [:new, :create, :show, :index]
   get '/register', to: "users#new"
 
   get '/login', to: 'sessions#new'

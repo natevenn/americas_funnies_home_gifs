@@ -1,0 +1,8 @@
+<h1>Welcome, Admin</h1>
+<%= link_to "New Gif", new_admin_category_path %>
+<ul>
+<%= @categories.each do |category| %>
+  <li><%= link_to "#{category.name}", admin_category_path(category) %></li>
+<% end %>
+</ul>
+

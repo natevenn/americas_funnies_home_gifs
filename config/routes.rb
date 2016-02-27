@@ -8,6 +8,6 @@ Rails.application.routes.draw do
   get '/admin', to: 'admin#index'
 
   namespace :admin do
-    resources :categories, except: [:index]
+    resources :categories
   end
 end

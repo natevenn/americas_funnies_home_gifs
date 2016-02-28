@@ -16,7 +16,7 @@ class AdminGifCreationTest < ActionDispatch::IntegrationTest
 
      assert_equal current_path, admin_category_path(Category.last.id)
      assert page.has_content?("Panda")
-     assert page.has_content?("gif count - 1")
+     assert page.has_content?("gif count - 25")
    end
 
    test "admin sees only one panda category when creating two panda gifs" do

@@ -1,8 +1,10 @@
 All <%= @category.name %> gifs
 <p>gif count - <%= @count %></p>
 
-<% @category.gifs.each do |gif| %>
-  <img src="<%= gif.image_path %>"/>
+<% counter = 0 %>
+<% @gifs.each do |gif| %>
+  <% counter += 1 %>
+  <%= counter %>. <img src="<%= gif.image_path %>"/> <%= link_to "delete gif #{counter}", admin_gif_path(:gif => gif.id), method: :delete %> <br>
 <% end %>
 
 <%= link_to "Delete this category", admin_category_path, method: :delete %>

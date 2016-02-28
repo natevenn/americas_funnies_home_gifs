@@ -8,7 +8,13 @@ class Admin::CategoriesController < Admin::BaseController
   def create
     @category = Category.new(category_params)
     if @category.save
-      @category.gifs.create(name: category_params[:name])
+      response = Faraday.get("http://api.giphy.com/v1/gifs/search?q=#{@category.name}&api_key=#{Rails.application.secrets.gify_api_key}")
+      raw_data = response.body
+      parse_data = JSON.parse(raw_data)
+      gifs = parse_data["data"]
+      gifs.each do |gif|
+        @category.gifs.create(name: @category.name, image_path: gif["images"]["fixed_height"]["url"])
+      end
       flash[:notice] = "Gif successfully created"
       redirect_to admin_categories_path
     else
@@ -40,5 +46,6 @@ class Admin::CategoriesController < Admin::BaseController
   def find_category
     @category = Category.find(params[:id])
   end
+
 
 end

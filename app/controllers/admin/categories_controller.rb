@@ -8,6 +8,7 @@ class Admin::CategoriesController < Admin::BaseController
   def create
     @category = Category.new(category_params)
     if @category.save
+      @category.gifs.create(name: category_params[:name])
       flash[:notice] = "Gif successfully created"
       redirect_to admin_categories_path
     else
@@ -21,6 +22,8 @@ class Admin::CategoriesController < Admin::BaseController
   end
 
   def show
+    @gifs = @category.gifs
+    @count = @gifs.all.count
   end
 
   def destroy

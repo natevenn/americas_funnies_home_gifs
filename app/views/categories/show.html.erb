@@ -1,1 +1,5 @@
 All <%= @category.name %> gifs
+<p>gif count - <%= @count %></p>
+<% @category.gifs.each do |gif| %>
+  <img src="<%= gif.image_path %>"/>
+<% end %>

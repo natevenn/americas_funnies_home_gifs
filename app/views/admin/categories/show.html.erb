@@ -1,2 +1,8 @@
-<h1><%= @category.name %></h1>
+All <%= @category.name %> gifs
+<p>gif count - <%= @count %></p>
+
+<% @category.gifs.each do |gif| %>
+  <img src="<%= gif.image_path %>"/>
+<% end %>
+
 <%= link_to "Delete this category", admin_category_path, method: :delete %>

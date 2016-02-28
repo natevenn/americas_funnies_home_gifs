@@ -19,6 +19,10 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
+  def index
+    @categories = Category.all
+  end
+
   private
 
   def user_params

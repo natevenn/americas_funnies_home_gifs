@@ -16,7 +16,7 @@ class UserCanSeeListOfCategoriesTest < ActionDispatch::IntegrationTest
     assert page.has_content?("pandas")
     assert page.has_content?("lol_cats")
 
-    click_on "panda"
+    click_on "pandas"
     assert page.has_content?("All pandas gifs")
 
     visit categories_path

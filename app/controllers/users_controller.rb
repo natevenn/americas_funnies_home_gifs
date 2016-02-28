@@ -19,6 +19,10 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
+  def index
+
+  end
+
   private
 
   def user_params

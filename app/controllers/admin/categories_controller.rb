@@ -1,4 +1,6 @@
 class Admin::CategoriesController < Admin::BaseController
+  before_action :find_category, only: [:show, :destroy]
+
   def new
     @category = Category.new
   end
@@ -19,11 +21,9 @@ class Admin::CategoriesController < Admin::BaseController
   end
 
   def show
-    @category = Category.find(params[:id])
   end
 
   def destroy
-    @category = Category.find(params[:id])
     @category.destroy
     redirect_to admin_categories_path
   end
@@ -32,6 +32,10 @@ class Admin::CategoriesController < Admin::BaseController
 
   def category_params
     params.require(:category).permit(:name)
+  end
+
+  def find_category
+    @category = Category.find(params[:id])
   end
 
 end

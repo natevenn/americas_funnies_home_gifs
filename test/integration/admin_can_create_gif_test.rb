@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class AdminCanCreateCategoriesTest < ActionDispatch::IntegrationTest
-   test "admin sees created gif" do
+   test "admin sees created category" do
      admin = User.create(username: 'nate', password: 'password', role: 1)
 
      ApplicationController.any_instance.stubs(:current_user).returns(admin)

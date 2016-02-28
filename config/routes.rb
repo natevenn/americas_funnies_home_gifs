@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
 
-  get '/admin', to: 'admin#index'
+  get '/admin', to: 'admin/base#index'
+
+  resources :categories, only: [:show, :index]
 
   namespace :admin do
     resources :categories

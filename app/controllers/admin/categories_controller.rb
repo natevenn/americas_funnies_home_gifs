@@ -8,7 +8,7 @@ class Admin::CategoriesController < Admin::BaseController
   def create
     @category = Category.new(category_params)
     if @category.save
-      response = Faraday.get("http://api.giphy.com/v1/gifs/search?q=#{@category.name}&api_key=#{Rails.application.secrets.gify_api_key}")
+      response = Faraday.get("http://api.giphy.com/v1/gifs/search?q=#{@category.name}&api_key=#{Figaro.env.gify_api_key}")
       raw_data = response.body
       parse_data = JSON.parse(raw_data)
       gifs = parse_data["data"]

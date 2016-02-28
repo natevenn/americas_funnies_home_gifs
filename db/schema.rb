@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160227185732) do
+ActiveRecord::Schema.define(version: 20160227230805) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,16 @@ ActiveRecord::Schema.define(version: 20160227185732) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "favorites", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "gif_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "favorites", ["gif_id"], name: "index_favorites_on_gif_id", using: :btree
+  add_index "favorites", ["user_id"], name: "index_favorites_on_user_id", using: :btree
+
   create_table "gifs", force: :cascade do |t|
     t.string  "name"
     t.string  "image_path"
@@ -29,11 +39,6 @@ ActiveRecord::Schema.define(version: 20160227185732) do
   end
 
   add_index "gifs", ["category_id"], name: "index_gifs_on_category_id", using: :btree
-
-  create_table "gifs_users", id: false, force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "gif_id",  null: false
-  end
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
@@ -43,5 +48,7 @@ ActiveRecord::Schema.define(version: 20160227185732) do
     t.datetime "updated_at",      null: false
   end
 
+  add_foreign_key "favorites", "gifs"
+  add_foreign_key "favorites", "users"
   add_foreign_key "gifs", "categories"
 end

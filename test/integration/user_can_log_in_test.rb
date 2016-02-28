@@ -2,7 +2,7 @@ require 'test_helper'
 
 class UserCanLogInTest < ActionDispatch::IntegrationTest
   test "user sees gifs on own show page" do
-    user = User.create(username: "brennan", password: "password")
+    user = User.create(username: "brennan", password: "password", role: 0)
     visit '/login'
 
     fill_in "Username", with: "brennan"

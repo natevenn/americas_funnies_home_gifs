@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   end
 
   def index
-
+    @categories = Category.all
   end
 
   private

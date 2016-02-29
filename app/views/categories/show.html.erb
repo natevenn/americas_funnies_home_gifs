@@ -1,5 +1,8 @@
+<%= link_to "Your gifs", user_path(current_user) %>
 All <%= @category.name %> gifs
+<% counter = 0 %>
 <p>gif count - <%= @count %></p>
 <% @category.gifs.each do |gif| %>
-  <img src="<%= gif.image_path %>"/>
+  <% counter += 1 %>
+  <img src="<%= gif.image_path %>"/> <%= link_to "Like gif #{counter}", gif_path(gif), method: :put %>
 <% end %>

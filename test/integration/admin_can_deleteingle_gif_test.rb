@@ -14,7 +14,6 @@ class AdminCanDeleteingleGifTest < ActionDispatch::IntegrationTest
 
     click_on 'delete gif 25'
 
-save_and_open_page
     refute page.has_content?("delete gif 25")
     assert page.has_content?("gif count - 24")
   end

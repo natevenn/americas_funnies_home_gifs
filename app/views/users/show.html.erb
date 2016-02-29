@@ -1,6 +1,12 @@
 <h1>Welcome <%= @user.username %></h1>
 
 Your favorited gifs
+<% counter = 0 %>
+<% current_user.gifs.each do |gif| %>
+<% counter += 1 %>
+<img src="<%= gif.image_path %>"/> <%= link_to "Unlike gif #{counter}", favorite_path(:gif => gif.id), method: :delete %><br>
+<% end %>
+
 
 
 <p>

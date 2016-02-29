@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get '/admin', to: 'admin/base#index'
 
   resources :categories, only: [:show, :index]
+  resources :gifs, only: [:show, :update]
+  resources :favorites, only: [:destroy]
 
   namespace :admin do
     resources :categories, :gifs

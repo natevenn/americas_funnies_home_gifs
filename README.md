@@ -22,5 +22,3 @@
     * Submit a pull request :D
 ## Credits
     TODO: Brennan Holtzclaw
-## License
-    TODO: Write license
